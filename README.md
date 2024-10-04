@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Time-Sensitive API Keys for Digital Content Access
 
-## Getting Started
+Leverage Unkey’s short-lived keys to grant temporary access to digital content (e.g., e-books, videos, or streams), expiring after a set duration.
 
-First, run the development server:
+## Uniqueness
+
+Many platforms lack simple time-based access controls or rely on complex, time-consuming setups. Unkey offers a quick, dynamic solution for trial versions, short-term access, or educational content management.
+
+## Use Cases
+
+Ideal for educational platforms, research papers, and subscription-based news services.
+
+## Benefits
+
+- **Security**: Content remains server-side, with access controlled by expiring API keys.
+- **Control**: Easily revoke or limit access by managing key lifespans.
+- **Scalability**: Suited for serverless or distributed systems.
+
+## Demo App Overview
+
+This demo provides time-limited access to specific pages of a PDF, without allowing full downloads. Each page request is authenticated with Unkey, ensuring access is controlled and expires as needed. The app streams individual PDF pages as users navigate through them.
+
+## Quickstart
+
+### Create a root key
+
+1. Go to [/settings/root-keys](https://app.unkey.com/settings/root-key) and click on the "Create New Root Key" button.
+2. Enter a name for the key.
+3. Select the following workspace permissions: `create_key`, `read_key`, `encrypt_key` and `decrypt_key`.
+4. Click "Create".
+
+### Create your API
+
+1. Go to [https://app.unkey.com/apis](https://app.unkey.com/apis) and click on the "Create New API" button.
+2. Give it a name.
+3. Click "Create".
+
+### Set up the example
+
+1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:unrenamed/unkey-pdf-view
+cd unkey-pdf-view
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install the dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Create a `.env` or `.env.local` file and add the following:
 
-## Learn More
+```env
+UNKEY_ROOT_KEY=your-root-key
+UNKEY_EBOOK_API_ID=your-ebook-api-id
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start the server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Open your browser and go to [http://localhost:3000](http://localhost:3000)
